@@ -1,5 +1,5 @@
 FROM rekgrpth/gost
-CMD [ "su-exec", "libreoffice", "/usr/lib/libreoffice/program/soffice.bin", "--headless", "--invisible", "--nocrashreport", "--nodefault", "--nofirststartwizard", "--nologo", "--norestore", "--accept=socket,host=0.0.0.0,port=2002;urp;StarOffice.Service" ]
+CMD [ "su-exec", "libreoffice", "/usr/lib/libreoffice/program/soffice.bin", "--headless", "--invisible", "--nocrashreport", "--nodefault", "--nofirststartwizard", "--nologo", "--norestore", "--accept=socket,host=0.0.0.0,port=2002,tcpNoDelay=1;urp;StarOffice.ComponentContext" ]
 ENV GROUP=libreoffice \
     USER=libreoffice
 VOLUME "${HOME}"
