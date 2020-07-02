@@ -13,5 +13,5 @@ RUN exec 2>&1 \
     && rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man \
     && ln -fs /usr/lib/libreoffice/program/soffice.bin /usr/bin/soffice.bin \
     && echo Done
-CMD [ "su-exec", "libreoffice", "soffice", "--headless", "--invisible", "--nocrashreport", "--nodefault", "--nofirststartwizard", "--nologo", "--norestore", "--accept=socket,host=0.0.0.0,port=2002;urp;" ]
+CMD [ "su-exec", "libreoffice", "soffice.bin", "--headless", "--invisible", "--nocrashreport", "--nodefault", "--nofirststartwizard", "--nologo", "--norestore", "--accept=socket,host=0.0.0.0,port=2002;urp;" ]
 VOLUME "${HOME}"
