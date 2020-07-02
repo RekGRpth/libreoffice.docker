@@ -10,5 +10,5 @@ RUN exec 2>&1 \
         ttf-liberation \
     && rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man \
     && echo Done
-CMD [ "su-exec", "libreoffice", "/usr/lib/libreoffice/program/soffice.bin", "--headless", "--invisible", "--nocrashreport", "--nodefault", "--nofirststartwizard", "--nologo", "--norestore", "--accept=socket,host=0.0.0.0,port=2002,urp;StarOffice.ComponentContext" ]
+CMD [ "su-exec", "libreoffice", "/usr/lib/libreoffice/program/soffice.bin", "--headless", "--invisible", "--nocrashreport", "--nodefault", "--nofirststartwizard", "--nologo", "--norestore", "--accept=socket,host=0.0.0.0,port=2002;urp;StarOffice.ComponentContext" ]
 VOLUME "${HOME}"
