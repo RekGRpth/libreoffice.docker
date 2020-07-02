@@ -8,7 +8,7 @@ RUN exec 2>&1 \
     && addgroup -S "${GROUP}" \
     && adduser -D -S -h "${HOME}" -s /sbin/nologin -G "${GROUP}" "${USER}" \
     && apk add --no-cache --virtual .libreoffice-rundeps \
-        libreoffice-common \
+        libreoffice \
         ttf-liberation \
     && rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man \
     && echo Done
