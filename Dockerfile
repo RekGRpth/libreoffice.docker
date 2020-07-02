@@ -7,9 +7,9 @@ RUN exec 2>&1 \
     && adduser -D -S -h "${HOME}" -s /sbin/nologin -G "${GROUP}" "${USER}" \
     && apk add --no-cache --virtual .libreoffice-rundeps \
         libreoffice \
-#        openjdk11-jdk \
-#        ttf-liberation \
         ttf-dejavu \
+    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --virtual .edge-testing-rundeps \
+        py3-unoconv \
     && rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man \
     && ln -fs /usr/lib/libreoffice/program/soffice.bin /usr/bin/soffice.bin \
     && echo Done
