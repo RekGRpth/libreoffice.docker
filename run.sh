@@ -2,7 +2,7 @@
 
 #docker build --tag rekgrpth/libreoffice .
 #docker push rekgrpth/libreoffice
-#docker pull rekgrpth/libreoffice
+docker pull rekgrpth/libreoffice
 docker volume create libreoffice
 docker network create --attachable --opt com.docker.network.bridge.name=docker docker || echo $?
 docker stop libreoffice || echo $?
