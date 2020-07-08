@@ -11,6 +11,9 @@ docker run \
     --detach \
     --env GROUP_ID=$(id -g) \
     --env LANG=ru_RU.UTF-8 \
+    --env LISTEN_ADDR=0.0.0.0:8443 \
+    --env LISTEN_CERTFILE=/etc/certs/cert.pem \
+    --env LISTEN_KEYFILE=/etc/certs/key.pem \
     --env TZ=Asia/Yekaterinburg \
     --env USER_ID=$(id -u) \
     --hostname libreoffice \
