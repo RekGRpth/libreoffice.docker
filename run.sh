@@ -9,16 +9,16 @@ docker stop libreoffice || echo $?
 docker rm libreoffice || echo $?
 docker run \
     --detach \
-    --env GROUP_ID=$(id -g) \
+    --env GROUP_ID="$(id -g)" \
     --env LANG=ru_RU.UTF-8 \
     --env LISTEN_ADDR=0.0.0.0:8443 \
     --env LISTEN_CERTFILE=/etc/certs/cert.pem \
     --env LISTEN_KEYFILE=/etc/certs/key.pem \
     --env TZ=Asia/Yekaterinburg \
-    --env USER_ID=$(id -u) \
+    --env USER_ID="$(id -u)" \
     --hostname libreoffice \
     --mount type=bind,source=/etc/certs,destination=/etc/certs,readonly \
     --mount type=volume,source=libreoffice,destination=/home \
     --name libreoffice \
-    --network docker \
+    --network name=docker,alias=libreoffice."$(hostname -d)" \
     rekgrpth/libreoffice
