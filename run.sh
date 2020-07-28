@@ -21,4 +21,4 @@ docker run \
     --mount type=volume,source=libreoffice,destination=/home \
     --name libreoffice \
     --network name=docker,alias=libreoffice."$(hostname -d)" \
-    rekgrpth/libreoffice
+    rekgrpth/libreoffice uwsgi --ini libreoffice.ini

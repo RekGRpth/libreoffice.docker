@@ -1,39 +1,30 @@
 FROM rekgrpth/gost
-ADD service /etc/service
 ENV GROUP=libreoffice \
+    PYTHONIOENCODING=UTF-8 \
+    PYTHONPATH=/usr/local/lib/python3.8:/usr/local/lib/python3.8/lib-dynload:/usr/local/lib/python3.8/site-packages \
     USER=libreoffice
+VOLUME "${HOME}"
 RUN exec 2>&1 \
     && set -ex \
     && addgroup -S "${GROUP}" \
     && adduser -D -S -h "${HOME}" -s /sbin/nologin -G "${GROUP}" "${USER}" \
     && apk add --no-cache --virtual .build-deps \
         gcc \
-        git \
-        go \
-        musl-dev \
-    && mkdir -p /usr/src \
-    && cd /usr/src \
-    && git clone --recursive https://github.com/RekGRpth/unoconv-api \
-    && cd /usr/src/unoconv-api \
-    && go build \
-    && cp unoconv-api /usr/local/bin/unoconv-api \
-    && cd / \
-    && apk add --no-cache \
+        libffi-dev \
         msttcorefonts-installer \
+        musl-dev \
+        pcre-dev \
+        py3-pip \
+        python3-dev \
+    && pip install --no-cache-dir --ignore-installed --prefix /usr/local \
+        pylokit \
+        uwsgi \
+        webob \
     && apk add --no-cache --virtual .libreoffice-rundeps \
         libreoffice \
-        runit \
         ttf-dejavu \
-    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --virtual .edge-testing-rundeps \
-        py3-unoconv \
     && update-ms-fonts \
     && fc-cache -f \
-    && apk del --no-cache \
-        msttcorefonts-installer \
     && apk del --no-cache .build-deps \
-    && chmod -R 0755 /etc/service /usr/local/bin \
     && rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man \
-    && ln -fs /usr/lib/libreoffice/program/soffice.bin /usr/bin/soffice.bin \
     && echo Done
-CMD [ "runsvdir", "/etc/service" ]
-VOLUME "${HOME}"
