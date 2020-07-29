@@ -13,6 +13,7 @@ RUN exec 2>&1 \
         libffi-dev \
         msttcorefonts-installer \
         musl-dev \
+        openssl-dev \
         pcre-dev \
         py3-pip \
         python3-dev \
