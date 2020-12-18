@@ -28,4 +28,5 @@ RUN exec 2>&1 \
     && fc-cache -f \
     && apk del --no-cache .build-deps \
     && rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man \
+    && find / -name "*.pyc" -delete \
     && echo Done
