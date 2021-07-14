@@ -25,10 +25,14 @@ RUN set -eux; \
     apk add --no-cache --virtual .libreoffice-rundeps \
         libreoffice \
         ttf-dejavu \
+        $(scanelf --needed --nobanner --format '%n#p' --recursive /usr/local | tr ',' '\n' | sort -u | while read -r lib; do test ! -e "/usr/local/lib/$lib" && echo "so:$lib"; done) \
     ; \
     update-ms-fonts; \
     fc-cache -f; \
+    (strip /usr/local/bin/* /usr/local/lib/*.so || true); \
     apk del --no-cache .build-deps; \
     rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man; \
     find / -name "*.pyc" -delete; \
+    find / -name "*.a" -delete; \
+    find / -name "*.la" -delete; \
     echo Done
