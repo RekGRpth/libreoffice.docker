@@ -31,8 +31,8 @@ RUN set -eux; \
     fc-cache -f; \
     find /usr/local/bin /usr/local/lib -type f -exec strip '{}' \;; \
     apk del --no-cache .build-deps; \
-    rm -rf /usr/src /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man; \
-    find / -name "*.pyc" -delete; \
-    find / -name "*.a" -delete; \
-    find / -name "*.la" -delete; \
+    find / -type f -name "*.pyc" -delete; \
+    find / -type f -name "*.a" -delete; \
+    find / -type f -name "*.la" -delete; \
+    rm -rf "${HOME}" /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man; \
     echo Done
