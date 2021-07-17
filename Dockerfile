@@ -1,7 +1,8 @@
 FROM rekgrpth/gost
+ARG PYTHON_VERSION=3.8
 ENV GROUP=libreoffice \
     PYTHONIOENCODING=UTF-8 \
-    PYTHONPATH=/usr/local/lib/python3.8:/usr/local/lib/python3.8/lib-dynload:/usr/local/lib/python3.8/site-packages \
+    PYTHONPATH="/usr/local/lib/python${PYTHON_VERSION}:/usr/local/lib/python${PYTHON_VERSION}/lib-dynload:/usr/local/lib/python${PYTHON_VERSION}/site-packages" \
     USER=libreoffice
 VOLUME "${HOME}"
 RUN set -eux; \
@@ -35,4 +36,4 @@ RUN set -eux; \
     find / -type f -name "*.a" -delete; \
     find / -type f -name "*.la" -delete; \
     rm -rf "${HOME}" /usr/share/doc /usr/share/man /usr/local/share/doc /usr/local/share/man; \
-    echo Done
+    echo done
