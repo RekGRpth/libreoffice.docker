@@ -1,5 +1,5 @@
 FROM rekgrpth/gost
-ARG PYTHON_VERSION=3.8
+ARG PYTHON_VERSION=3.9
 ENV GROUP=libreoffice \
     PYTHONIOENCODING=UTF-8 \
     PYTHONPATH="/usr/local/lib/python${PYTHON_VERSION}:/usr/local/lib/python${PYTHON_VERSION}/lib-dynload:/usr/local/lib/python${PYTHON_VERSION}/site-packages" \
