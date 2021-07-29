@@ -25,6 +25,7 @@ RUN set -eux; \
         uwsgi \
         webob \
     ; \
+    cd /; \
     apk add --no-cache --virtual .libreoffice-rundeps \
         libreoffice \
         ttf-dejavu \
