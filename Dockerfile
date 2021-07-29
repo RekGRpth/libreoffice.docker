@@ -1,4 +1,4 @@
-FROM rekgrpth/gost
+FROM ghcr.io/rekgrpth/gost.docker
 ARG PYTHON_VERSION=3.9
 ENV GROUP=libreoffice \
     PYTHONIOENCODING=UTF-8 \

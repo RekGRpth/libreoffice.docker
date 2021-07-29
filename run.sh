@@ -1,8 +1,6 @@
-#!/bin/sh -ex
+#!/bin/sh -eux
 
-#docker build --tag rekgrpth/libreoffice .
-#docker push rekgrpth/libreoffice
-docker pull rekgrpth/libreoffice
+docker pull ghcr.io/rekgrpth/libreoffice.docker
 docker volume create libreoffice
 docker network create --attachable --opt com.docker.network.bridge.name=docker docker || echo $?
 docker stop libreoffice || echo $?
@@ -19,4 +17,4 @@ docker run \
     --mount type=volume,source=libreoffice,destination=/home \
     --name libreoffice \
     --network name=docker \
-    rekgrpth/libreoffice uwsgi --ini libreoffice.ini
+    ghcr.io/rekgrpth/libreoffice.docker uwsgi --ini libreoffice.ini
