@@ -17,4 +17,5 @@ docker run \
     --mount type=volume,source=libreoffice,destination=/home \
     --name libreoffice \
     --network name=docker \
+    --restart always \
     ghcr.io/rekgrpth/libreoffice.docker uwsgi --ini libreoffice.ini
