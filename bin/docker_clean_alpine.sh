@@ -3,7 +3,6 @@
 cd /
 apk add --no-cache --virtual .libreoffice-rundeps \
     libreoffice \
-    py3-webob \
     ttf-dejavu \
     uwsgi-python3 \
     $(scanelf --needed --nobanner --format '%n#p' --recursive /usr/local | tr ',' '\n' | sort -u | while read -r lib; do test ! -e "/usr/local/lib/$lib" && echo "so:$lib"; done) \

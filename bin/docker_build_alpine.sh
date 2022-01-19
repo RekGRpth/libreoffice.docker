@@ -10,7 +10,6 @@ apk add --no-cache --virtual .build-deps \
     openssl-dev \
     pcre-dev \
     py3-pip \
-    py3-webob \
     python3-dev \
 ;
 update-ms-fonts
