@@ -1,0 +1,17 @@
+#!/bin/sh -eux
+
+apk update --no-cache
+apk upgrade --no-cache
+apk add --no-cache --virtual .build-deps \
+    gcc \
+    libffi-dev \
+    msttcorefonts-installer \
+    musl-dev \
+    openssl-dev \
+    pcre-dev \
+    py3-pip \
+    py3-webob \
+    python3-dev \
+;
+update-ms-fonts
+fc-cache -f
