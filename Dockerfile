@@ -32,6 +32,7 @@ RUN set -eux; \
     cd /; \
     apk add --no-cache --virtual .libreoffice \
         libreoffice \
+        py3-six \
         ttf-dejavu \
         uwsgi-python3 \
         $(scanelf --needed --nobanner --format '%n#p' --recursive /usr/local | tr ',' '\n' | grep -v "^$" | sort -u | while read -r lib; do test -z "$(find /usr/local/lib -name "$lib")" && echo "so:$lib"; done) \
