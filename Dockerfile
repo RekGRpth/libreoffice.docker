@@ -21,7 +21,7 @@ RUN set -eux; \
         pcre-dev \
         py3-pip \
         python3-dev \
-    ;
+    ; \
     update-ms-fonts; \
     fc-cache -f; \
     cd "$HOME"; \
