@@ -1,5 +1,5 @@
 FROM ghcr.io/rekgrpth/gost.docker:latest
-ARG DOCKER_PYTHON_VERSION=3.10
+ARG DOCKER_PYTHON_VERSION=3.9
 ENV GROUP=libreoffice \
     PYTHONIOENCODING=UTF-8 \
     PYTHONPATH="/usr/local/lib/python$DOCKER_PYTHON_VERSION:/usr/local/lib/python$DOCKER_PYTHON_VERSION/lib-dynload:/usr/local/lib/python$DOCKER_PYTHON_VERSION/site-packages" \
@@ -16,7 +16,7 @@ RUN set -eux; \
         libffi-dev \
         msttcorefonts-installer \
         musl-dev \
-        openssl-dev \
+        openssl3-dev \
         pcre-dev \
         py3-pip \
         python3-dev \
@@ -34,7 +34,7 @@ RUN set -eux; \
         py3-six \
         ttf-dejavu \
         uwsgi-python3 \
-        $(scanelf --needed --nobanner --format '%n#p' --recursive /usr/local | tr ',' '\n' | grep -v "^$" | sort -u | while read -r lib; do test -z "$(find /usr/local/lib -name "$lib")" && echo "so:$lib"; done) \
+        $(scanelf --needed --nobanner --format '%n#p' --recursive /usr/local | tr ',' '\n' | grep -v "^$" | grep -v -e libcrypto | sort -u | while read -r lib; do test -z "$(find /usr/local/lib -name "$lib")" && echo "so:$lib"; done) \
     ; \
     find /usr/local/bin -type f -exec strip '{}' \;; \
     find /usr/local/lib -type f -name "*.so" -exec strip '{}' \;; \
