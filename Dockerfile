@@ -16,7 +16,7 @@ RUN set -eux; \
         libffi-dev \
         msttcorefonts-installer \
         musl-dev \
-        openssl3-dev \
+#        openssl3-dev \
         pcre-dev \
         py3-pip \
         python3-dev \
