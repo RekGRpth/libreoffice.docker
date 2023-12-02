@@ -1,10 +1,17 @@
-FROM ghcr.io/rekgrpth/gost.docker:latest
+FROM alpine:latest
+ADD bin /usr/local/bin
+ENTRYPOINT [ "docker_entrypoint.sh" ]
+ENV HOME=/home
+MAINTAINER RekGRpth
+WORKDIR "$HOME"
 ARG DOCKER_PYTHON_VERSION=3.11
 ENV GROUP=libreoffice \
     PYTHONIOENCODING=UTF-8 \
     PYTHONPATH="/usr/local/lib/python$DOCKER_PYTHON_VERSION:/usr/local/lib/python$DOCKER_PYTHON_VERSION/lib-dynload:/usr/local/lib/python$DOCKER_PYTHON_VERSION/site-packages" \
     USER=libreoffice
 RUN set -eux; \
+    ln -fs su-exec /sbin/gosu; \
+    chmod +x /usr/local/bin/*.sh; \
     apk update --no-cache; \
     apk upgrade --no-cache; \
     addgroup -S "$GROUP"; \
@@ -16,7 +23,6 @@ RUN set -eux; \
         libffi-dev \
         msttcorefonts-installer \
         musl-dev \
-#        openssl3-dev \
         pcre-dev \
         py3-pip \
         python3-dev \
@@ -30,9 +36,16 @@ RUN set -eux; \
     ; \
     cd /; \
     apk add --no-cache --virtual .libreoffice \
+        busybox-extras \
+        busybox-suid \
+        ca-certificates \
         libreoffice \
+        musl-locales \
         py3-six \
+        shadow \
+        su-exec \
         ttf-dejavu \
+        tzdata \
         uwsgi-python3 \
         $(scanelf --needed --nobanner --format '%n#p' --recursive /usr/local | tr ',' '\n' | grep -v "^$" | grep -v -e libcrypto | sort -u | while read -r lib; do test -z "$(find /usr/local/lib -name "$lib")" && echo "so:$lib"; done) \
     ; \
