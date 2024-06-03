@@ -4,7 +4,7 @@ ENTRYPOINT [ "docker_entrypoint.sh" ]
 ENV HOME=/home
 MAINTAINER RekGRpth
 WORKDIR "$HOME"
-ARG DOCKER_PYTHON_VERSION=3.11
+ARG DOCKER_PYTHON_VERSION=3.12
 ENV GROUP=libreoffice \
     PYTHONIOENCODING=UTF-8 \
     PYTHONPATH="/usr/local/lib/python$DOCKER_PYTHON_VERSION:/usr/local/lib/python$DOCKER_PYTHON_VERSION/lib-dynload:/usr/local/lib/python$DOCKER_PYTHON_VERSION/site-packages" \
